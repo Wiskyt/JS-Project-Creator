@@ -16,6 +16,8 @@ Vous pouvez ensuite démarrer le script en tapant
 ./jspc.sh
 ```
 
+Une fois dans votre fichier HTML, à la fin de la deuxiéme un appui sur TAB vous déploiera le document.
+
 ## Objectifs des prochainnes versions
 - Permettre de créer le projet dans un dossier distant
 - Template HTML plus solide
