@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 clear
 echo "-------------------------------"
@@ -7,8 +7,8 @@ echo "　ゝ、　　＼　／⌒ヽ,ノ 　  /´"
 echo "　　ゝ、   （ ( ͡◉ ͜> ͡◉) ／"
 echo " 　　>　 　   　,ノ"
 echo "　　　　　∠_,,,/´"
-echo "Basic JS Project creator v0.2.1"
-echo "-------------------------------"
+echo -e "Basic JS Project creator v0.2.1"
+echo -e "\033[32m -------------------------------"
 read -p "Enter project name: " name
 read -p "Use JQuery ? (y/n) " -n 1 -r jquery
 echo
@@ -18,7 +18,7 @@ then
    echo
 fi
 echo
-read -p "Fast mode? (y/n) " -n 1 -r fast
+read -p "Fast mode (Only if shell command 'code' is present) ? (y/n) " -n 1 -r fast
 echo 
 echo "Creating configuration for $name"
 
@@ -34,10 +34,48 @@ if [[ $jquery =~ ^[Yy]$ ]]
 then
    if [[ $bootstrap =~ ^[Yy]$ ]]
    then
-      printf "<!doctype html>\nhtml>head(title+meta[charset='UTF-8']+meta[name='' content='']*2+link[href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css']+link[href='css/style.css'])+body>script[src='https://code.jquery.com/jquery-3.2.1.min.js']+script[src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js']+script[src='js/main.js']" > index.html
+      echo "<!doctype html>
+<html>
+<head>
+   <title></title>
+   <meta charset='UTF-8'>
+   <meta name='' content=''>
+   <meta name='' content=''>
+   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+   <link rel='stylesheet' href='css/style.css'>
+</head>
+<body>
+
+   <h1> Hello Bootstrap ! </h1>
+
+   <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+   <script src='js/main.js'></script>
+</body>
+</html>" > index.html
+
+
    else
-      printf "<!doctype html>\nhtml>head(title+meta[charset='UTF-8']+meta[name='' content='']*2+link[href='css/style.css'])+body>script[src='https://code.jquery.com/jquery-3.2.1.min.js']+script[src='js/main.js']" > index.html
+      echo "<!doctype html>
+<html>
+<head>
+   <title></title>
+   <meta charset='UTF-8'>
+   <meta name='' content=''>
+   <meta name='' content=''>
+   <link rel='stylesheet' href='css/style.css'>
+</head>
+<body>
+
+   <h1> Hello jQuery ! </h1>
+
+   <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+   <script src='js/main.js'></script>
+</body>
+</html>" > index.html 
    fi
+
+
    printf "\$(function() {\n\t\n})" > js/main.js
 else
    printf "document.addEventListener('DOMContentLoaded', function(event) {\n\t\n});" > js/main.js
@@ -53,5 +91,10 @@ then
    code index.html
    code js/main.js
    code css/style.css
-   open index.html
+
+   if [ "$(uname)" == "Darwin" ]; then
+      open index.html       
+   elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+      xdg-open index.html
+   fi
 fi
