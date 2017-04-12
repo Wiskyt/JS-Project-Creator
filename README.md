@@ -1,4 +1,4 @@
-# JS Project Creator v0.2.1
+# JS Project Creator v0.2.3
 
 JSPC est un script de création de projets JS simple.
 
