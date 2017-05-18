@@ -21,6 +21,7 @@ Vous pouvez ensuite démarrer le script en tapant
 ```
 
 Votre projet est maintenant prêt ! :)
+À noter que JSPC créera le dossier de votre projet a coté de la ou il est placé, donc positionnez le a la racine de votre dossier principal ;)
 
 ## Objectifs des prochainnes versions
 - Permettre de créer le projet dans un dossier distant
