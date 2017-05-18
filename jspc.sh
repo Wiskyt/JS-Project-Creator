@@ -22,38 +22,62 @@ echo -e "　　　　　∠_,,,/´"
 echo
 echo -e "${Blu}  JS Project creator v0.2.3"
 echo -e "${Whi}"
+
 read -p "Enter project name: " name
-read -p "Use JQuery ? (y/n) " -n 1 -r jquery
-echo -e
-if [[ $jquery =~ ^[Yy]$ ]]
+
+ # Convert to Lower Case
+nameLower=`echo "console.log('$name'.toLowerCase());" | node`
+
+echo -e "${Yel}"
+read -p "Use Angular ? (y/n) " -n 1 -r angular
+echo -e "${Whi}"
+
+if [[ $angular =~ ^[Nn]$ ]]
 then
-   read -p "Use Bootstrap ? (y/n) " -n 1 -r bootstrap
+   read -p "Use JQuery ? (y/n) " -n 1 -r jquery
    echo -e
+   ## MAYBE BOOTSTRAP?
+   if [[ $jquery =~ ^[Yy]$ ]]
+   then
+      read -p "\tUse Bootstrap ? (y/n) " -n 1 -r bootstrap
+      echo -e
+   fi
 fi
+
+## Some server ma nigga?
+echo -e "${Gre}"
+read -p "Use NodeJS ? (y/n) " -n 1 -r node
+echo -e "${Whi}"
+
 echo -e
 echo -e "${Red}(Works only if shell command 'code' is present)${Whi}"
 read -p "Fast mode ? (y/n) " -n 1 -r fast
 echo -e 
-echo -e "Creating configuration for $name"
+echo -e
+echo -e "${Gre}Creating configuration for $name${Whi}"
+echo -e
 
 mkdir "$name"
 cd "$name"
-mkdir js
-mkdir img
-mkdir css
 
-printf "html, body {\n\twidth: 100%%;\n\theight: 100%%;\n}" > css/style.css
-
-if [[ $jquery =~ ^[Yy]$ ]]
+## NOT ANGULAR ? OKAY
+if [[ $angular =~ ^[Nn]$ ]]
 then
-   if [[ $bootstrap =~ ^[Yy]$ ]]
+   mkdir js
+   mkdir img
+   mkdir css
+
+   printf "html, body {\n\twidth: 100%%;\n\theight: 100%%;\n}" > css/style.css
+
+   if [[ $jquery =~ ^[Yy]$ ]]
    then
-      echo -e "<!doctype html>
+      if [[ $bootstrap =~ ^[Yy]$ ]]
+      then
+         echo -e "<!doctype html>
 <html>
 <head>
    <title></title>
    <meta charset='UTF-8'>
-   <meta name='' content=''>
    <meta name='' content=''>
    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
    <link rel='stylesheet' href='css/style.css'>
@@ -69,13 +93,12 @@ then
 </html>" > index.html
 
 
-   else
-      echo -e "<!doctype html>
+      else
+         echo -e "<!doctype html>
 <html>
 <head>
    <title></title>
    <meta charset='UTF-8'>
-   <meta name='' content=''>
    <meta name='' content=''>
    <link rel='stylesheet' href='css/style.css'>
 </head>
@@ -87,28 +110,196 @@ then
    <script src='js/main.js'></script>
 </body>
 </html>" > index.html 
+      fi
+
+      printf "\$(function() {\n\t\n})" > js/main.js
+   else
+      printf "document.addEventListener('DOMContentLoaded', function(event) {\n\t\n});" > js/main.js
+      printf "<!doctype html>\nhtml>head(title+meta[charset='UTF-8']+meta[name='' content='']*2+link[href='css/style.css'])+body>script[src='js/main.js']" > index.html
+
    fi
 
+else # Angular
+   if [[ $node =~ ^[Yy]$ ]]
+   then
+      # Server.js
+      echo "require('colors');
+let express = require('express');
+let bodyParser = require('body-parser');
+let app = express();
 
-   printf "\$(function() {\n\t\n})" > js/main.js
-else
-   printf "document.addEventListener('DOMContentLoaded', function(event) {\n\t\n});" > js/main.js
-   printf "<!doctype html>\nhtml>head(title+meta[charset='UTF-8']+meta[name='' content='']*2+link[href='css/style.css'])+body>script[src='js/main.js']" > index.html
+// On autorise plus de requêtes pour éviter les soucis
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+app.use(bodyParser.json());
 
+app.use(express.static('public')); // On distribue le dossier public
+
+// ~~~~~~~~~~~~~ ROUTING ~~~~~~~~~~~~~~~
+
+app.get('/myRoute/:myParam', function(req, res) {
+    console.log('GET Request at myRoute with Param : ', req.params.myParam);
+});
+
+// ~~~~~~~~~~~~ ROUTING END ~~~~~~~~~~~~~~~~~~~~
+
+let server = app.listen(9000, '127.0.0.1', function() {
+    let serverInfo = server.address();
+    console.log(('\n\tServer started on http://' + serverInfo.address + ':' + serverInfo.port));
+    console.log('Ready to Roll !'.america);
+    // On utilise .couleur aprés un string pour un max de style quand on débug
+});" > server.js
+
+      npm init -f
+
+      echo '{
+  "name": "'$nameLower'",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}' > package.json
+
+      npm i body-parser express colors --save
+      mkdir public
+      cd public
+      fi
+   mkdir views
+   mkdir components
+   mkdir data
+   mkdir controllers
+
+   # Index.html
+   echo -e "<!DOCTYPE html>
+<html lang='en' ng-app='$nameLower'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>$name</title>
+    <link rel='stylesheet' href=''>
+</head>
+
+<body>
+    <header></header>
+    <ui-view></ui-view>
+
+    <script src='/node_modules/angular/angular.min.js'></script>
+    <script src='node_modules/@uirouter/angularjs/release/angular-ui-router.min.js'></script>
+    <script src='/app.js'></script>
+    <script src='/components/home/home.js'></script>
+</body>
+
+</html>" > index.html
+
+
+      # APP JS
+   echo -e "'use strict'
+
+const config = [
+    '\$stateProvider',
+    '\$urlRouterProvider',
+    Config
+]
+
+const run = [
+    '\$state',
+    Run
+]
+
+angular.module('$nameLower', [
+   'ui.router'
+    // HERE LIST YOUR MODULES
+])
+
+.config(config)
+    .run(run)
+
+function Config(\$stateProvider, \$urlRouterProvider) {
+    const states = [{
+        name: 'home',
+        url: '/',
+        component: 'home'
+    }];
+
+    states.forEach((state) => {
+        \$stateProvider.state(state)
+    });
+
+   \$urlRouterProvider.otherwise('/');
+}
+
+function Run(\$state) {
+    if (!navigator.onLine) {
+        \$state.go('offline')
+    }
+}" > app.js
+
+   npm init -f
+   npm i angular @uirouter/angularjs --save
+
+   cd components
+   mkdir home
+   cd home
+   echo -e "<h1> Hello World !</h1>" > home.html
+   echo -e "'use strict'
+
+angular.module('$nameLower')
+
+.component('home', {
+    templateUrl: '/components/home/home.html',
+    controller: Home
+})
+
+function Home($scope) {
+    // Controller
+}" > home.js
+   cd ../../../
 fi
 
+echo -e
+echo -e
 echo -e "${Gre}Done. Enjoy ( ͡° ͜ʖ ͡°)"
-sleep 1
 
 if [[ $fast =~ ^[Yy]$ ]]
-then
-   code index.html
-   code js/main.js
-   code css/style.css
+   then
+   if [[ $angular =~ ^[Nn]$ ]] # Classic JS
+   then
+      code index.html
+      code js/main.js
+      code css/style.css
 
-   if [ "$(uname)" == "Darwin" ]; then
-      open index.html       
-   elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-      xdg-open index.html
+      if [ "$(uname)" == "Darwin" ]; then # OSX
+         open index.html       
+      elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # Linux
+         xdg-open index.html
+      fi
+
+   else  # Angular
+      code public/index.html public/app.js public/components/home/home.js public/components/home/home.html
    fi
+
+   if [[ $node =~ ^[Yy]$ ]]
+   then
+      code server.js
+      open "http://127.0.0.1:9000"
+   fi
+   
 fi
+
+if [[ $node =~ ^[Yy]$ ]]
+then
+   echo -e "${On_IGre}${Whi}Go into $name and use npm start to launch the server ! (Nodemon ${Red}required${Whi} in global)"
+fi
+
+echo -e
+sleep 1
