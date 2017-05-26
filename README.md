@@ -21,7 +21,7 @@ Vous pouvez ensuite démarrer le script en tapant
 ./jspc.sh
 ```
 
-Votre projet est maintenant prêt ! :)\n
+Votre projet est maintenant prêt ! :) <br/>
 À noter que JSPC créera le dossier de votre projet a coté de la ou il est placé, donc positionnez le a la racine de votre dossier principal ;)
 
 ## Objectifs des prochainnes versions
