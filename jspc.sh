@@ -13,11 +13,11 @@ Cya='\x1B[0;36m';     BCya='\x1B[1;36m';    UCya='\x1B[4;36m';    ICya='\x1B[0;9
 Whi='\x1B[0;37m';     BWhi='\x1B[1;37m';    UWhi='\x1B[4;37m';    IWhi='\x1B[0;97m';    BIWhi='\x1B[1;97m';   On_Whi='\x1B[47m';    On_IWhi='\x1B[0;107m';
 
 clear
-echo
-echo -e "${Gre}＜￣｀ヽ、　　　　　　　／ ￣ ＞"
+echo -e "${Gre}"
+echo -e "＜￣｀ヽ、　　　　　　　／ ￣ ＞"
 echo -e "　ゝ、　　＼　／⌒ヽ,ノ 　  /´"
-echo -e "　　ゝ、   （ ( ͡◉ ͜> ͡◉) ／"
-echo -e " 　　>　 　   　,ノ"
+echo -e "　　　ゝ、   （ ( ͡◉ ͜> ͡◉) ／"
+echo -e "　　 　　>　 　 　,ノ"
 echo -e "　　　　　∠_,,,/´"
 echo
 echo -e "${Blu}  JS Project creator v0.2.3"
@@ -298,7 +298,7 @@ fi
 
 if [[ $node =~ ^[Yy]$ ]]
 then
-   echo -e "${On_IGre}${Whi}Go into $name and use npm start to launch the server ! (Nodemon ${Red}required${Whi} in global)"
+   echo -e "${On_IGre}${Whi}Go into $name and use ${Yel}npm start ${Whi}to launch the server ! (Nodemon ${Red}required${Whi} in global)"
 fi
 
 echo -e

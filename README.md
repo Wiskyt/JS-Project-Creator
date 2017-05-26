@@ -1,4 +1,4 @@
-# JS Project Creator v0.3
+# JS Project Creator v0.3.1
 
 JSPC est un script de création de projets JS simple.
 
@@ -6,7 +6,8 @@ Une fois lancé, il posera plusieurs questions afin de déterminer vos besoin et
 
 # NEW
 
-JSPC Gére maintenant la création de projets Angular et Node !
+- v0.3.0: JSPC Gére maintenant la création de projets Angular et Node !
+- v0.3.1: Angular Component Creator (angcc.sh) est la, il accélére la création barbante des components
 
 ## Comment l'utiliser ?
 
@@ -20,7 +21,7 @@ Vous pouvez ensuite démarrer le script en tapant
 ./jspc.sh
 ```
 
-Votre projet est maintenant prêt ! :)
+Votre projet est maintenant prêt ! :)\n
 À noter que JSPC créera le dossier de votre projet a coté de la ou il est placé, donc positionnez le a la racine de votre dossier principal ;)
 
 ## Objectifs des prochainnes versions
