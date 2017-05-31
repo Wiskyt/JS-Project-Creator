@@ -20,7 +20,7 @@ echo -e "　　　ゝ、   （ ( ͡◉ ͜> ͡◉) ／"
 echo -e "　　 　　>　 　 　,ノ"
 echo -e "　　　　　∠_,,,/´"
 echo
-echo -e "${Blu}  JS Project creator v0.2.3"
+echo -e "${Blu}  JS Project creator v0.3.2"
 echo -e "${Whi}"
 
 read -p "Enter project name: " name
