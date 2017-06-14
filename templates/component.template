@@ -1,0 +1,12 @@
+'use strict';
+
+angular.module('%%name%%')
+
+.component('%%componentNameLower%%', {
+    templateUrl: '/components/%%componentNameLower%%/%%componentNameLower%%.html',
+    controller: %%componentName%%
+})
+
+function %%componentName%%() {
+    // Controller
+}

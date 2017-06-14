@@ -1,0 +1,28 @@
+{
+  "name": "@wiskyt/jspc",
+  "version": "1.0.0",
+  "description": "JSPC is",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "jspc": "bin/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wiskyt/JS-Project-Creator.git"
+  },
+  "author": "Wiskyt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wiskyt/JS-Project-Creator/issues"
+  },
+  "homepage": "https://github.com/Wiskyt/JS-Project-Creator#readme",
+  "dependencies": {
+    "ascii-progress": "^1.0.5",
+    "colors": "^1.1.2",
+    "prompt": "^1.0.0",
+    "shelljs": "^0.7.7"
+  }
+}

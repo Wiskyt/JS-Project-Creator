@@ -11,9 +11,9 @@ const run = [
     Run
 ]
 
-angular.module('example-node-angular', [
-   'ui.router'
-    // HERE LIST YOUR MODULES
+angular.module('%%name%%', [
+   %%dependencies%%
+    // Here list your dependencies
 ])
 
 .config(config)
