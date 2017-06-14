@@ -22,10 +22,12 @@ Vous pouvez ensuite démarrer l'outil
 jspc
 ```
 
+Si vous obtenez une erreur de Syntaxe à l'éxécution vérifiez que vous avez bien la <a href="https://nodecasts.io/update-node-js/">derniére version</a> de Node.
+
 ## Options
 
 ### --angular-component (-ac)
-Vous pouvez utiliser jspc a la racine de votre dossier Client (typiquement /public) pour créer un nouveau component<br />
+Vous pouvez utiliser jspc a la racine de votre dossier Client (typiquement /public) pour créer un nouveau component.<br />
 ( /!\ Ne link pas automatiquement le component dans l'index )
 ```
 jspc -ac componentName
