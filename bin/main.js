@@ -5,12 +5,15 @@ var shell = require('shelljs');
 
 var Utils = require('./utils.js');
 
-var ProgressBar = require('ascii-progress');
-
-var bar = new ProgressBar({
-   schema: ':bar.green :percent.green',
-   total: 10
+process.on('SIGINT', function () {
+   console.log("\nJSPC Terminated.\n".red);
+      process.exit();
 });
+
+var Progress = require('ts-progress');
+var bar = Progress.create({ total: 10, pattern: 'Progress: {bar.white.green.30} | Elapsed: {elapsed.white} | {percent.white}' });
+bar.tick = () => bar.update();
+
 
 var prompt = require('./prompt.js');
 
@@ -19,8 +22,9 @@ var Component = require('./component.js');
 
 var exit = false;
 var args = process.argv.slice(2);
-for (let i = 0; i < args.length; i++) {
 
+for (let i = 0; i < args.length; i++) {
+   // Angular component
    if (args[i] == '-ac' || args[i] == '--angular-component') {
       let name = args[i + 1];
       var component = new Component(name);
@@ -30,7 +34,7 @@ for (let i = 0; i < args.length; i++) {
       component.save(shell.pwd().stdout + '/components');
       exit = true;
       i++;
-   } // else if
+   }
 }
 
 if (!exit) {
@@ -83,7 +87,7 @@ function next(options) {
       shell.mkdir('-p', './public');
       shell.cd('public');
    }
-
+   
    if (options.angular) {
       let path = shell.pwd().stdout;
 
@@ -108,12 +112,15 @@ function next(options) {
       bar.tick();
 
       for (let i = 0; i < options.components.length; i++) {
+         if (options.components[i] == '') break;
          let c = new Component(options.components[i]);
          shell.mkdir('-p', './components/' + c.nameLower)
          c.construct(options);
          c.save(path + '/components');
       }
+
       bar.tick();
+      Utils.byebye();
    }
 }
 

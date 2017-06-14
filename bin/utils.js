@@ -18,7 +18,11 @@ Utils.logIntro = function() {
 }
 
 Utils.pleaseWait = function() {
-   console.log("\n Creating files and downloading dependencies.. this may take a while. \n".red);
+   console.log("\n Creating files and downloading dependencies.. this may take a while. \n\n".red);
+}
+
+Utils.byebye = function() {
+   console.log("\n Your project is now ready ! Enjoy ( ͡° ͜ʖ ͡°) \n".white);
 }
 
 Utils.clearConsole = function () {
