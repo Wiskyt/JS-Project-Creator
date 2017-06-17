@@ -21,7 +21,7 @@ app.get('/myRoute/:myParam', function(req, res) {
 
 // ~~~~~~~~~~~~ ROUTING END ~~~~~~~~~~~~~~~~~~~~
 
-let server = app.listen(%%port%%, '127.0.0.1', function() {
+let server = app.listen(1337, '127.0.0.1', function() {
     let serverInfo = server.address();
     console.log(('\n\tServer started on http://' + serverInfo.address + ':' + serverInfo.port));
     console.log('Ready to Roll !'.america);

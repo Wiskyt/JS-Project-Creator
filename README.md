@@ -1,39 +1,41 @@
 # JS Project Creator v1.0
 
-JSPC est un script de création de projets Javascript comprenant Angular et Node
+JSPC is a tool for creating starter kit Javascript projects, including AngularJS and Node.
 
-Une fois lancé, il posera plusieurs questions afin de déterminer vos besoin et créera un sous-dossier comprenant les fichiers et dossiers nécécessaires pour bien se lancer dans un projet.
+Once launched, he will ask multiple questions to identify your needs and will create a subfolder containing all your files and folders necessary to have a good headstart in your project.
 
 ## NEW
 
-- v0.3.0: JSPC Gére maintenant la création de projets Angular et Node !
-- v0.3.1: Angular Component Creator (angcc.sh) est la, il accélére la création barbante des components
-- v1.0 : Réécrit en Node ! Templating plus puissant pour pré-inclure ses dépendances
+- v0.3.0: JSPC Can now create Angular and Node templates.
+- v0.3.1: Angular Component Creator (angcc.sh) is there, he templates component creation.
+- v1.0 : Rewritten from Bash to NodeJS ! More powerful he can now pre-include dependencies.
+- v1.0.5 : You can now specify a custom port for your server and Materialize was added.
 
-## Comment l'utiliser ?
+## How to use it ?
 
-Récupérez le package npm et installez le en global
+Get the package on npm and install it globally
 ```
 npm i -g jspc
 ```
 
-Vous pouvez ensuite démarrer l'outil
+You can now start the tool
 ```
 jspc
 ```
 
-Si vous obtenez une erreur de Syntaxe à l'éxécution vérifiez que vous avez bien la <a href="https://nodecasts.io/update-node-js/">derniére version</a> de Node.
+If you get a Syntax error make sure your node version is <a href="https://nodecasts.io/update-node-js/">up to date</a>
 
 ## Options
 
 ### --angular-component (-ac)
-Vous pouvez utiliser jspc a la racine de votre dossier Client (typiquement /public) pour créer un nouveau component.<br />
-( /!\ Ne link pas automatiquement le component dans l'index )
+You can call jspc with this option when at the root of an angular project to create a new component<br />
+( /!\ Doesn't automatically link the components in the index )
 ```
 jspc -ac componentName
 ```
 
 
-## Objectifs des prochainnes versions
-- Ajout de librairies (React, VueJS..)
-- Ajout de frameworks CSS (Materialize)
+## Goals for next updates
+- New libraries (React, VueJS)
+- New frameworks (Materialize)
+- Inheritance in Templates

@@ -138,7 +138,11 @@ function getClientDependencies(options) {
 
    if (options.bootstrap) {
       arr.push('bootstrap');
-   } if (options.resource) {
+   } else if (options.materialize) {
+      arr.push('materialize-css');
+   }
+   
+   if (options.resource) {
       arr.push('angular-resource');
    } if (options.angular) {
       arr.push('angular');

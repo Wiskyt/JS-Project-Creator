@@ -14,7 +14,7 @@ Template.prototype.construct = function (options) {
 
    for (let i = 0; i < this.holders.length; i++) {
       let h = this.holders[i];
- 
+
       this.file = this.file.replace(/%%name%%/g, options.name); // Just do it first because its recurring
 
       switch (h.text) {
@@ -30,6 +30,10 @@ Template.prototype.construct = function (options) {
          case 'componentsInclusions':
             this.file = this.file.replace(/%%componentsInclusions%%/g, this.constructComponentInclusions(options))
             break;
+         case 'port':
+            this.file = this.file.replace(/%%port%%/g, options.port)
+            break;
+
       }
    }
 }
@@ -86,7 +90,11 @@ Template.prototype.constructScriptInclusions = function (options) {
 
    if (options.bootstrap) {
       scripts.push("<script src='./node_modules/bootstrap/dist/js/bootstrap.min.js'></script>");
-   } if (options.resource) {
+   } else if (options.materialize) {
+      scripts.push("<script src='./node_modules/materialize-css/dist/js/materialize.min.js'></script>");
+   } 
+   
+   if (options.resource) {
       scripts.push("<script src='./node_modules/angular-resource/angular-resource.min.js'></script>");
    }
 
@@ -110,6 +118,8 @@ Template.prototype.constructCssInclusions = function (options) {
    if (options.bootstrap) {
       css.push("<link href='./node_modules/bootstrap/dist/css/bootstrap.min.css'></link>");
       css.push("<link href='./node_modules/bootstrap/dist/css/bootstrap-theme.min.css'></link>");
+   } else if (options.materialize) {
+      css.push("<link href='./node_modules/materialize-css/dist/css/materialize.min.css'></link>");
    }
 
    let c = options.components;

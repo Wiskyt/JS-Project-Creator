@@ -36,6 +36,18 @@ class Prompt {
          options = result;
          var properties = {};
 
+         if (!isYes(options.bootstrap)) {
+            properties.materialize = {
+               description: "Use Materialize ?".white
+            }
+         }
+
+         if (isYes(options.node)) {
+            properties.port = {
+               description: "Which port for the server ? (Default: 8080)".white
+            }
+         }
+
          if (isYes(options.angular)) {
             properties.resource = {
                description: "Use $resource ?".white
@@ -63,7 +75,7 @@ function onErr(err) {
 }
 
 function isYes(text) {
-   if (text == "y" || text == 'yy' || text == 'yyy' ||  text == "yes" || text == "Yes" || text == "YES" || text == "Y") {
+   if (text == "y" || text == 'yy' || text == 'yyy' || text == "yes" || text == "Yes" || text == "YES" || text == "Y") {
       return true;
    }
    return false;
@@ -81,7 +93,26 @@ function translateOptions(options) {
       if (key == "name") { // Faut pas déconner quand meme
          options['originalName'] = options[key];
          options[key] = options[key].toLowerCase();
-      } else if (key == "components") {
+      }
+
+      else if (key == "port") {
+         let port = options[key];
+         if (typeof port === "string") {
+            port = parseInt(port);
+            if (!isNaN(port)) {
+               if (port < 1024) {
+                  port = 8080;
+               }
+            } 
+            else {
+               port = 8080;
+            }
+         } 
+         else port = 8080; 
+         options[key] = port;
+      }
+
+      else if (key == "components") {
          if (!isNo(options[key]) && options[key] != '') { // If syntax looks alright
             options[key] = options[key].split(" ");
             if (options[key].indexOf('home') < 0) options[key].push('home'); // Add home if not present
