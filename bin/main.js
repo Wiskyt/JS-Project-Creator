@@ -7,18 +7,15 @@ var Utils = require('./utils.js');
 
 process.on('SIGINT', function () {
    console.log("\nJSPC Terminated.\n".red);
-      process.exit();
+   process.exit();
 });
-
-var Progress = require('ts-progress');
-var bar = Progress.create({ total: 10, pattern: 'Progress: {bar.white.green.30} | Elapsed: {elapsed.white} | {percent.white}' });
-bar.tick = () => bar.update();
-
 
 var prompt = require('./prompt.js');
 
 var Template = require('./template.js');
 var Component = require('./component.js');
+
+var Progress, bar;
 
 var exit = false;
 var args = process.argv.slice(2);
@@ -35,13 +32,22 @@ for (let i = 0; i < args.length; i++) {
       exit = true;
       i++;
    }
+
+   else if (args[i] == '-v' || args[i] == '--version') {
+      console.log(Utils.version);
+      exit = true;
+   }
 }
 
 if (!exit) {
+   var Progress = require('ts-progress');
+   var bar = Progress.create({ total: 10, pattern: 'Progress: {bar.white.green.30} | Elapsed: {elapsed.white} | {percent.white}' });
+   bar.tick = () => bar.update();
    prompt.start();
    prompt.getOptions(next);
    // next(null); // test (comment previous)
 }
+
 
 function next(options) {
    Utils.pleaseWait();
@@ -87,7 +93,7 @@ function next(options) {
       shell.mkdir('-p', './public');
       shell.cd('public');
    }
-   
+
    if (options.angular) {
       let path = shell.pwd().stdout;
 
@@ -106,7 +112,7 @@ function next(options) {
 
       shell.mkdir('-p', './components', './data');
 
-      saveSimpleFile(path + '/index.css', 'html, body {\n\twidth: 100%;\n\theight: 100%;\n}')
+      saveSimpleFile(path + '/index.css', 'html, body {\n\twidth: 100%;\n\theight: 100%; margin: 0;\n}')
       appjs.save(path);
       index.save(path);
       bar.tick();
@@ -141,7 +147,7 @@ function getClientDependencies(options) {
    } else if (options.materialize) {
       arr.push('materialize-css');
    }
-   
+
    if (options.resource) {
       arr.push('angular-resource');
    } if (options.angular) {

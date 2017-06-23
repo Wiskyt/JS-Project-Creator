@@ -116,15 +116,15 @@ Template.prototype.constructCssInclusions = function (options) {
    let css = ["<link href='./index.css'></link>"]
 
    if (options.bootstrap) {
-      css.push("<link href='./node_modules/bootstrap/dist/css/bootstrap.min.css'></link>");
-      css.push("<link href='./node_modules/bootstrap/dist/css/bootstrap-theme.min.css'></link>");
+      css.push("<link href='./node_modules/bootstrap/dist/css/bootstrap.min.css'/>");
+      css.push("<link href='./node_modules/bootstrap/dist/css/bootstrap-theme.min.css'/>");
    } else if (options.materialize) {
-      css.push("<link href='./node_modules/materialize-css/dist/css/materialize.min.css'></link>");
+      css.push("<link href='./node_modules/materialize-css/dist/css/materialize.min.css'/>");
    }
 
    let c = options.components;
    for (let i = 0; i < c.length; i++) {
-      css.push("<link href='./components/" + c[i] + "/" + c[i] + ".css'></link>");
+      css.push("<link href='./components/" + c[i] + "/" + c[i] + ".css'/>");
    }
 
    return css.join('\n    ');
