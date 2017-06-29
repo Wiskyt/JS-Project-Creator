@@ -1,4 +1,4 @@
-# JS Project Creator v1.0
+# JS Project Creator v1.0.7
 
 JSPC is a tool for creating starter kit Javascript projects, including AngularJS and Node.
 
@@ -10,6 +10,7 @@ Once launched, he will ask multiple questions to identify your needs and will cr
 - v0.3.1: Angular Component Creator (angcc.sh) is there, he templates component creation.
 - v1.0 : Rewritten from Bash to NodeJS ! More powerful he can now pre-include dependencies.
 - v1.0.5 : You can now specify a custom port for your server and Materialize was added.
+- v1.0.7 : Option v disponible pour la version, fix des balises link
 
 ## How to use it ?
 
