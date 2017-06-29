@@ -1,6 +1,6 @@
 {
   "name": "jspc",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Javascript Project Creator is a command-line tool that creates starter kit for Angular/Node or simple JS projects by providing pre-made files and dependencies.",
   "main": "bin/main.js",
   "bin": {

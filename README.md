@@ -1,4 +1,4 @@
-# JS Project Creator v1.0.7
+# JS Project Creator v1.0.8
 
 JSPC is a tool for creating starter kit Javascript projects, including AngularJS and Node.
 

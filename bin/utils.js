@@ -1,7 +1,7 @@
 require('colors');
 var Utils = module.exports = {};
 
-Utils.version = '1.0.7';
+Utils.version = '1.0.8';
 
 Utils.owl = `
 ＜￣｀ヽ、　　　　　　　／ ￣ ＞
